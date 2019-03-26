@@ -32,7 +32,11 @@ function scwpec_option_page() {
     <?php
 	$correct = get_option( 'scwpec_connected' );
         if ($correct) { // Options correct whole process start
-	echo 'La opcion esta bien. Correct vale '.$correct;
+            echo 'Datos correctos</br>';
+            require_once 'includes/createCT.php';
+            new createCT();
+            require_once 'includes/createOT.php';
+            new createOT();
 	} 
         else
         echo '<h3>Please update the settings</h3>';    
@@ -120,6 +124,7 @@ function scwpec_validate( $options ) {
             { 
                 add_settings_error('scwpec_host', 'scwpec_texterror', 'Input data yields a successful connection!!','updated');     
              } 
+    $scb->null;
     }
 	update_option('scwpec_connected', $correct);
     return $valid;    
